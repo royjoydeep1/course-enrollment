@@ -10,14 +10,13 @@ buildscript {
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-		classpath 'se.transmode.gradle:gradle-docker:1.2'
 	}
 }
 
 plugins {
 	id 'java'
 }
-apply plugin: 'docker'
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: "io.spring.dependency-management"
@@ -27,6 +26,13 @@ apply plugin: 'io.spring.dependency-management'
 group = 'com.sha'
 version = '0.0.1'
 sourceCompatibility = 1.8
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Greenwich.RELEASE'
+    }
+}
+
 repositories {
 	mavenCentral()
 }
@@ -35,21 +41,11 @@ jar {
 	baseName = 'zuul-gateway-service'
 	archiveName = "zuul-gateway-service.jar"
 }
-docker {
-  baseImage = 'royjoydeep1/zuul-gateway-service'
-  maintainer = 'Joydeep Roy ""royjoydeep1@gmail.com""'
-}
 
-dependencyManagement {
-	imports {
-		mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Greenwich.RELEASE'
-	}
-}
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter')
     compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-zuul', version: '2.1.1.RELEASE'
 	compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-eureka-client', version: '2.1.1.RELEASE'
-	
 
 }
 
