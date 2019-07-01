@@ -9,11 +9,12 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://192.168.99.100:32772/eureka/
+      defaultZone: http://192.168.99.100:8761/eureka/
   instance:
     leaseRenewalIntervalInSeconds: 1
     leaseExpirationDurationInSeconds: 2
-
+    hostname: 192.168.99.100
+    
 ribbon:
   eureka:
     enabled: true
