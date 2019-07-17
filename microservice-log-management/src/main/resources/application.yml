@@ -1,6 +1,11 @@
 spring:
   profiles: container
-
+  data:
+    cassandra:
+      keyspace-name: course_keyspace
+      contact-points: localhost
+      port: 9042
+      schema-action: create_if_not_exists
 eureka:
   client:
     serviceUrl:
