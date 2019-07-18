@@ -1,4 +1,4 @@
-FROM gradle:latest as builder
+FROM gradle:4.8.1  as builder
 ADD --chown=gradle:gradle . /app/gradle/src
 WORKDIR /app/gradle/src
 RUN gradle clean assemble
